@@ -1,8 +1,13 @@
-import { BrowserRouter, useRoutes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, useLocation, useRoutes } from 'react-router-dom';
 import { PageOne, PageTwo } from './Pages';
 import { MainPage } from './MainPage';
 
 function App() {
+  const location = useLocation();
+  useEffect(() => {
+    console.log('Current location is', location);
+  }, [location]);
   const routes = useRoutes([
     {
       path: '/',
