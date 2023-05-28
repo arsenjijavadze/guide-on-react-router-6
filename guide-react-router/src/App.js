@@ -15,7 +15,16 @@ function App() {
       children: [
         { index: true, element: <div>No page is selected</div> },
         { path: '*', element: <PageOne /> },
-        { path: 'two', element: <PageTwo /> },
+        {
+          path: 'one',
+          element: <PageOne />,
+          children: [{ path: ':id', element: <PageOne /> }],
+        },
+        {
+          path: 'two',
+          element: <PageTwo />,
+          children: [{ path: ':id', element: <PageTwo /> }],
+        },
       ],
     },
   ]);

@@ -1,13 +1,17 @@
+import { useParams } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
 
-const getPage = (index) => (
-    <>
-        <h3>Page {index}</h3>
-        <div>
-            Page {index} content: {loremIpsum({ count: 5 })}
-        </div>
-    </>
-);
+const BuildPage = ({ index }) => {
+    const { id } = useParams();
+    return (
+        <>
+            <h3>Page {index}</h3>
+            <div>
+                Page {index} {id && <span> - paragraph {id} </span>} content: {loremIpsum({ count: 5 })}
+            </div>
+        </>
+    )
+}
 
-export const PageOne = () => getPage(1);
-export const PageTwo = () => getPage(2);
+export const PageOne = () => BuildPage({ index: 1 });
+export const PageTwo = () => BuildPage({ index: 2 });
