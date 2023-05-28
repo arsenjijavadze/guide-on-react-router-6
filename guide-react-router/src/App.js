@@ -6,9 +6,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<MainPage />} />
-        <Route path="*" element={<PageOne />} />
-        <Route path="two" element={<PageTwo />} />
+        <Route path="/" element={<MainPage />}>
+          <Route index element={<div>No page is selected</div>} />
+          <Route path="*" element={<PageOne />} />
+          <Route path="two" element={<PageTwo />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
