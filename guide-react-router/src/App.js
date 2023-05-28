@@ -1,19 +1,28 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
 import { PageOne, PageTwo } from './Pages';
 import { MainPage } from './MainPage';
 
 function App() {
+  const routes = useRoutes([
+    {
+      path: '/',
+      element: <MainPage />,
+      children: [
+        { index: true, element: <div>No page is selected</div> },
+        { path: '*', element: <PageOne /> },
+        { path: 'two', element: <PageTwo /> },
+      ],
+    },
+  ]);
+  return routes;
+}
+const AppWrapper = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainPage />}>
-          <Route index element={<div>No page is selected</div>} />
-          <Route path="*" element={<PageOne />} />
-          <Route path="two" element={<PageTwo />} />
-        </Route>
-      </Routes>
+      <App />
     </BrowserRouter>
   );
-}
+};
 
-export default App;
+
+export default AppWrapper;
